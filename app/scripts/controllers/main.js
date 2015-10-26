@@ -18,8 +18,12 @@ angular.module('sandboxFluxApp')
 			});
 		};
 
-		store.addListener(function () {
+		var storeToken = store.addListener(function () {
 			$scope.pressed = store.pressed;
+		});
+
+		$scope.$on('$destroy', function () {
+			storeToken.remove();
 		});
 
 	});

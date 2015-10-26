@@ -10,7 +10,11 @@
 angular.module('sandboxFluxApp')
 	.controller('AboutCtrl', function ($scope, store) {
 		$scope.pressed = store.pressed;
-		store.addListener(function () {
+		var storeToken = store.addListener(function () {
 			$scope.pressed = store.pressed;
+		});
+
+		$scope.$on('$destroy', function () {
+			storeToken.remove();
 		});
 	});

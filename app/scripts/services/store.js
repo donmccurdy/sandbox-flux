@@ -18,6 +18,7 @@ angular.module('sandboxFluxApp')
 
 		Store.prototype.addListener = function (fn) {
 			this.callbacks.push(fn);
+			return this.__createToken(fn);
 		};
 
 		Store.prototype.getDispatcher = function () {
@@ -35,6 +36,16 @@ angular.module('sandboxFluxApp')
 			this.callbacks.forEach(function (callback) {
 				callback();
 			});
+		};
+
+		Store.prototype.__createToken = function (fn) {
+			var token = {};
+			token.remove = function () {
+				this.callbacks = this.callbacks.filter(function (callback) {
+					return callback !== fn;
+				});
+			}.bind(this);
+			return token;
 		};
 
 		return new Store(dispatcher);
