@@ -12,6 +12,7 @@ angular
   .module('sandboxFluxApp', [
     'ngAnimate',
     'ngCookies',
+    'ngMaterial',
     'ngResource',
     'ngRoute',
     'ngSanitize',
@@ -32,4 +33,7 @@ angular
       .otherwise({
         redirectTo: '/'
       });
+  })
+  .config(function ($mdThemingProvider) {
+    $mdThemingProvider.theme('default')
   });

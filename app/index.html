@@ -8,48 +8,45 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
   </head>
-  <body ng-app="sandboxFluxApp">
+  <body ng-app="sandboxFluxApp" layout="column">
     <!--[if lte IE 8]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <!-- Add your site or application content here -->
-    <div class="header">
-      <div class="navbar navbar-default" role="navigation">
-        <div class="container">
-          <div class="navbar-header">
+    <md-toolbar layout="row">
+      <div class="md-toolbar-tools">
+        <md-button ng-click="toggleSidenav('left')" hide-gt-sm class="md-icon-button">
+          <md-icon aria-label="Menu" md-svg-icon="https://s3-us-west-2.amazonaws.com/s.cdpn.io/68133/menu.svg"></md-icon>
+        </md-button>
+        <a href="#/"><h1>sandboxFlux</h1></a>
+      </div>
+    </md-toolbar>
 
-            <a class="navbar-brand" href="#/">sandboxFlux</a>
-          </div>
+    <div layout="row" flex>
+      <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
 
-          <div class="collapse">
+        <md-content layout-padding>
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#/">Home</a></li>
+            <li><a ng-href="#/about">About</a></li>
+            <li><a ng-href="#/">Contact</a></li>
+          </ul>
+        </md-content>
 
-            <ul class="nav navbar-nav">
-              <li class="active"><a href="#/">Home</a></li>
-              <li><a ng-href="#/about">About</a></li>
-              <li><a ng-href="#/">Contact</a></li>
-            </ul>
-          </div>
-        </div>
+      </md-sidenav>
+      <div layout="column" flex id="content">
+        <md-content layout="column" flex class="md-padding">
+          <div ng-view=""></div>
+        </md-content>
       </div>
     </div>
-
-    <div class="container">
-    <div ng-view=""></div>
-    </div>
-
-    <div class="footer">
-      <div class="container">
-        <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
-      </div>
-    </div>
-
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
@@ -71,6 +68,8 @@
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.js"></script>
+    <script src="bower_components/angular-material/angular-material.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
