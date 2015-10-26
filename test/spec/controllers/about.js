@@ -12,12 +12,15 @@ describe('Controller: AboutCtrl', function () {
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
     AboutCtrl = $controller('AboutCtrl', {
-      $scope: scope
-      // place here mocked dependencies
+      $scope: scope,
+      store: {
+        pressed: false,
+        addListener: function () {}
+      }
     });
   }));
 
-  it('should attach a list of awesomeThings to the scope', function () {
-    expect(AboutCtrl.awesomeThings.length).toBe(3);
+  it('should be initialized with button state', function () {
+    expect(scope.pressed).toBe(false);
   });
 });

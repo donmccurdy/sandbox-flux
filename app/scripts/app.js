@@ -35,5 +35,5 @@ angular
       });
   })
   .config(function ($mdThemingProvider) {
-    $mdThemingProvider.theme('default')
+    $mdThemingProvider.theme('default');
   });

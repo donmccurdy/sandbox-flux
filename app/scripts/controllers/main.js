@@ -8,10 +8,18 @@
  * Controller of the sandboxFluxApp
  */
 angular.module('sandboxFluxApp')
-  .controller('MainCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('MainCtrl', function ($scope, store) {
+    $scope.pressed = store.pressed;
+
+    $scope.pressButton = function () {
+      store.getDispatcher().dispatch({
+        actionType: 'button-update',
+        pressed: true
+      });
+    };
+
+    store.addListener(function () {
+      $scope.pressed = store.pressed;
+    });
+
   });

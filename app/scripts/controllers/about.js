@@ -8,10 +8,9 @@
  * Controller of the sandboxFluxApp
  */
 angular.module('sandboxFluxApp')
-  .controller('AboutCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('AboutCtrl', function ($scope, store) {
+    $scope.pressed = store.pressed;
+    store.addListener(function () {
+      $scope.pressed = store.pressed;
+    });
   });
