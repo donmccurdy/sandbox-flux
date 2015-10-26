@@ -8,6 +8,6 @@
  * Factory in the sandboxFluxApp.
  */
 angular.module('sandboxFluxApp')
-  .factory('dispatcher', function () {
-  	return new window.Flux.Dispatcher();
-  });
+	.factory('dispatcher', function () {
+		return new window.Flux.Dispatcher();
+	});

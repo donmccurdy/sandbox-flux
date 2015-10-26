@@ -8,18 +8,18 @@
  * Controller of the sandboxFluxApp
  */
 angular.module('sandboxFluxApp')
-  .controller('MainCtrl', function ($scope, store) {
-    $scope.pressed = store.pressed;
+	.controller('MainCtrl', function ($scope, store) {
+		$scope.pressed = store.pressed;
 
-    $scope.pressButton = function () {
-      store.getDispatcher().dispatch({
-        actionType: 'button-update',
-        pressed: true
-      });
-    };
+		$scope.pressButton = function () {
+			store.getDispatcher().dispatch({
+				actionType: 'button-update',
+				pressed: true
+			});
+		};
 
-    store.addListener(function () {
-      $scope.pressed = store.pressed;
-    });
+		store.addListener(function () {
+			$scope.pressed = store.pressed;
+		});
 
-  });
+	});

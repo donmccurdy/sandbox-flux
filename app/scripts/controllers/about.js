@@ -8,9 +8,9 @@
  * Controller of the sandboxFluxApp
  */
 angular.module('sandboxFluxApp')
-  .controller('AboutCtrl', function ($scope, store) {
-    $scope.pressed = store.pressed;
-    store.addListener(function () {
-      $scope.pressed = store.pressed;
-    });
-  });
+	.controller('AboutCtrl', function ($scope, store) {
+		$scope.pressed = store.pressed;
+		store.addListener(function () {
+			$scope.pressed = store.pressed;
+		});
+	});
