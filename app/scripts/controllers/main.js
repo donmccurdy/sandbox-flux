@@ -13,8 +13,7 @@ angular.module('sandboxFluxApp')
 
 		$scope.pressButton = function () {
 			store.getDispatcher().dispatch({
-				actionType: ACTIONS.BUTTON_UPDATE,
-				pressed: true
+				actionType: ACTIONS.BUTTON_UPDATE
 			});
 		};
 

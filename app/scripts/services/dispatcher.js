@@ -9,5 +9,5 @@
  */
 angular.module('sandboxFluxApp')
 	.factory('dispatcher', function () {
-		return new window.Flux.Dispatcher();
+		return new Flux.Dispatcher();
 	});

@@ -8,14 +8,24 @@
  * Controller of the sandboxFluxApp
  */
 angular.module('sandboxFluxApp')
-	.controller('ExploreCtrl', function ($scope, $http, RESOURCES) {
+	.controller('ExploreCtrl', function ($scope, store) {
+
 		/* Chart.js demo
 		************************************/
-		$http.get(RESOURCES.API + '/questions')
-			.then(function (response) {
-				var question = _.first(response.data);
+
+		this.updatePolls = function () {
+			var question = _.first(store.polls);
+			if (question) {
 				$scope.labels = _.pluck(question.choices, 'choice');
 				$scope.data = [ _.pluck(question.choices, 'votes') ];
 				$scope.series = [ question.question ];
-			});
+			}
+		};
+
+		var storeToken = store.addListener(this.updatePolls.bind(this));
+		$scope.$on('$destroy', function () {
+			storeToken.remove();
+		});
+
+		this.updatePolls();
 	});

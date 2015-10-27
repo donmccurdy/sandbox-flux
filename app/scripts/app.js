@@ -23,7 +23,8 @@ angular
 		API: 'http://private-24e9-sandboxflux.apiary-mock.com'
 	})
 	.constant('ACTIONS', {
-		BUTTON_UPDATE: 'button-update'
+		BUTTON_UPDATE: 'button-update',
+		POLL_UPDATE: 'poll-update'
 	})
 	.config(function ($routeProvider) {
 		$routeProvider

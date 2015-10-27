@@ -8,16 +8,19 @@
  * Factory in the sandboxFluxApp.
  */
 angular.module('sandboxFluxApp')
-	.factory('store', function (dispatcher, ACTIONS) {
+	.factory('store', function ($http, dispatcher, RESOURCES, ACTIONS) {
+
+		var callbacks = [];
+
 		var Store = function (dispatcher) {
-			this.dispatcher = dispatcher;
-			this.pressed = false;
-			this.callbacks = [];
+			this.pressed = 0;
+			this.polls = [];
+
 			this.dispatchToken = dispatcher.register(this.__handler.bind(this));
 		};
 
 		Store.prototype.addListener = function (fn) {
-			this.callbacks.push(fn);
+			callbacks.push(fn);
 			return this.__createToken(fn);
 		};
 
@@ -27,13 +30,15 @@ angular.module('sandboxFluxApp')
 
 		Store.prototype.__handler = function (payload) {
 			if (payload.actionType === ACTIONS.BUTTON_UPDATE) {
-				this.pressed = payload.pressed;
+				this.pressed++;
+			} else if (payload.actionType === ACTIONS.POLL_UPDATE) {
+				this.polls = payload.polls;
 			}
 			this.__emitChange();
 		};
 
 		Store.prototype.__emitChange = function () {
-			this.callbacks.forEach(function (callback) {
+			callbacks.forEach(function (callback) {
 				callback();
 			});
 		};
@@ -41,12 +46,21 @@ angular.module('sandboxFluxApp')
 		Store.prototype.__createToken = function (fn) {
 			var token = {};
 			token.remove = function () {
-				this.callbacks = this.callbacks.filter(function (callback) {
+				callbacks = callbacks.filter(function (callback) {
 					return callback !== fn;
 				});
-			}.bind(this);
+			};
 			return token;
 		};
+
+		// TODO: This isn't the right place for this.
+		$http.get(RESOURCES.API + '/questions')
+			.then(function (response) {
+				dispatcher.dispatch({
+					actionType: ACTIONS.POLL_UPDATE,
+					polls: response.data
+				});
+			});
 
 		return new Store(dispatcher);
 	});
