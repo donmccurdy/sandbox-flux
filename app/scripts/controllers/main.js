@@ -8,12 +8,12 @@
  * Controller of the sandboxFluxApp
  */
 angular.module('sandboxFluxApp')
-	.controller('MainCtrl', function ($scope, store) {
+	.controller('MainCtrl', function ($scope, store, ACTIONS) {
 		$scope.pressed = store.pressed;
 
 		$scope.pressButton = function () {
 			store.getDispatcher().dispatch({
-				actionType: 'button-update',
+				actionType: ACTIONS.BUTTON_UPDATE,
 				pressed: true
 			});
 		};

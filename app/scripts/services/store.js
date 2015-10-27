@@ -8,7 +8,7 @@
  * Factory in the sandboxFluxApp.
  */
 angular.module('sandboxFluxApp')
-	.factory('store', function (dispatcher) {
+	.factory('store', function (dispatcher, ACTIONS) {
 		var Store = function (dispatcher) {
 			this.dispatcher = dispatcher;
 			this.pressed = false;
@@ -26,7 +26,7 @@ angular.module('sandboxFluxApp')
 		};
 
 		Store.prototype.__handler = function (payload) {
-			if (payload.actionType === 'button-update') {
+			if (payload.actionType === ACTIONS.BUTTON_UPDATE) {
 				this.pressed = payload.pressed;
 			}
 			this.__emitChange();

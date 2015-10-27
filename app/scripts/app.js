@@ -19,6 +19,12 @@ angular
 		'ngTouch',
 		'chart.js'
 	])
+	.constant('RESOURCES', {
+		API: 'http://private-24e9-sandboxflux.apiary-mock.com'
+	})
+	.constant('ACTIONS', {
+		BUTTON_UPDATE: 'button-update'
+	})
 	.config(function ($routeProvider) {
 		$routeProvider
 			.when('/', {
@@ -30,6 +36,11 @@ angular
 				templateUrl: 'views/about.html',
 				controller: 'AboutCtrl',
 				controllerAs: 'about'
+			})
+			.when('/explore', {
+				templateUrl: 'views/explore.html',
+				controller: 'ExploreCtrl',
+				controllerAs: 'explore'
 			})
 			.otherwise({
 				redirectTo: '/'
