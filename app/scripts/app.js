@@ -49,4 +49,10 @@ angular
 	})
 	.config(function ($mdThemingProvider) {
 		$mdThemingProvider.theme('default');
+	})
+	.config(function () {
+		Parse.initialize(
+			'1HjpKS0k6054RdvGjmEwFtCbglfycTkTIqd1k22y',
+			'BTXQ11uqQEtihjZAIGMxUr8ZSdVJKXn8KadbC0iJ'
+		);
 	});

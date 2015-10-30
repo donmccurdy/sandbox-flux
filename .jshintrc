@@ -13,6 +13,7 @@
   "globals": {
     "_": false,
     "angular": false,
-    "Flux": false
+    "Flux": false,
+    "Parse": false
   }
 }

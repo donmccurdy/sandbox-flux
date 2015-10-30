@@ -8,7 +8,9 @@
  * Factory in the sandboxFluxApp.
  */
 angular.module('sandboxFluxApp')
-	.factory('store', function ($http, dispatcher, RESOURCES, ACTIONS) {
+	.factory('store', function ($http, $timeout, dispatcher, RESOURCES, ACTIONS) {
+
+		var Poll = Parse.Object.extend('Poll');
 
 		var callbacks = [];
 
@@ -53,14 +55,18 @@ angular.module('sandboxFluxApp')
 			return token;
 		};
 
-		// TODO: This isn't the right place for this.
-		$http.get(RESOURCES.API + '/questions')
-			.then(function (response) {
-				dispatcher.dispatch({
-					actionType: ACTIONS.POLL_UPDATE,
-					polls: response.data
+		var query = new Parse.Query(Poll);
+		query.find({
+			success: function (polls) {
+				$timeout(function () {
+					dispatcher.dispatch({
+						actionType: ACTIONS.POLL_UPDATE,
+						polls: polls
+					});
 				});
-			});
+			},
+			error: console.error.bind(console)
+		});
 
 		return new Store(dispatcher);
 	});
