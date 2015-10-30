@@ -12,7 +12,10 @@
 	"undef": true,
 	"unused": true,
 	"globals": {
+		"_": false,
 		"angular": false,
-		"inject": false
+		"Flux": false,
+		"inject": false,
+		"Parse": false
 	}
 }
