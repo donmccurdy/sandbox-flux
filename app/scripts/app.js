@@ -24,7 +24,7 @@ angular
 	})
 	.constant('ACTIONS', {
 		BUTTON_UPDATE: 'button-update',
-		POLL_UPDATE: 'poll-update'
+		TOPIC_UPDATE: 'poll-update'
 	})
 	.config(function ($routeProvider) {
 		$routeProvider
