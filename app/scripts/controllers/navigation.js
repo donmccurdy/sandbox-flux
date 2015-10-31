@@ -8,8 +8,19 @@
  * Controller of the sandboxFluxApp
  */
 angular.module('sandboxFluxApp')
-  .controller('NavigationCtrl', function ($scope, $mdSidenav) {
+	.controller('NavigationCtrl', function ($scope, $location, $timeout, $mdSidenav) {
 		$scope.toggleNavigation = _.debounce(function () {
-			$mdSidenav('navigation').toggle();
+			$timeout(function () {
+				$mdSidenav('navigation').toggle();
+			});
 		}, 200);
-  });
+
+		$scope.isActive = function (path) {
+			return path === $location.path();
+		};
+
+		$scope.openMenu = function($mdOpenMenu, ev) {
+			$mdOpenMenu(ev);
+		};
+	});
+

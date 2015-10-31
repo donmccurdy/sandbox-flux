@@ -26,7 +26,10 @@
         <md-button ng-click="toggleNavigation()" hide-gt-sm class="md-icon-button">
           <md-icon aria-label="Menu" md-svg-icon="https://s3-us-west-2.amazonaws.com/s.cdpn.io/68133/menu.svg"></md-icon>
         </md-button>
-        <a href="#/"><h1>sandboxFlux</h1></a>
+        <a href="#/"><h1>World Development Indicators</h1></a>
+        <span flex></span>
+        <md-button ng-href="#/" ng-class="{ active: isActive('/') }">Explore</md-button>
+        <md-button ng-href="#/about" ng-class="{ active: isActive('/about') }">About</md-button>
       </div>
     </md-toolbar>
 
@@ -35,9 +38,8 @@
 
         <md-content layout-padding>
           <ul class="nav navbar-nav" ng-click="toggleNavigation()">
-            <li class="active"><md-button href="#/">Home</md-button></li>
+            <li class="active"><md-button href="#/">Explore</md-button></li>
             <li><md-button ng-href="#/about">About</md-button></li>
-            <li><md-button ng-href="#/explore">Explore</md-button></li>
           </ul>
         </md-content>
 
@@ -84,7 +86,6 @@
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/about.js"></script>
         <script src="scripts/services/dispatcher.js"></script>
-        <script src="scripts/controllers/explore.js"></script>
         <script src="scripts/controllers/navigation.js"></script>
         <script src="scripts/stores/store.js"></script>
         <script src="scripts/stores/topicstore.js"></script>
