@@ -1,10 +1,13 @@
+
+<h1 class="md-title">Topics</h1>
 <div class="row">
-	<h4>Topics</h4>
 	<md-progress-linear ng-if="!topics.length"
 											md-mode="indeterminate"></md-progress-linear>
-	<md-list>
-		<md-list-item ng-repeat="topic in topics">
-			{{topic.get('value')}}
-		</md-list-item>
-	</md-list>
+	<md-input-container class="md-input-container">
+		<md-select ng-model="ctrl.selectedTopic" aria-label="Select topic">
+			<md-option ng-repeat="topic in topics" value="{{topic.attributes.key}}">
+				{{topic.get('value')}}
+			</md-option>
+		</md-select>
+	</md-input-container>
 </div>
