@@ -1,13 +1,25 @@
 
 <h1 class="md-title">Topics</h1>
 <div class="row">
-	<md-progress-linear ng-if="!topics.length"
-											md-mode="indeterminate"></md-progress-linear>
 	<md-input-container class="md-input-container">
-		<md-select ng-model="ctrl.selectedTopic" aria-label="Select topic">
-			<md-option ng-repeat="topic in topics" value="{{topic.attributes.key}}">
+		<md-select ng-model="ctrl.topic" aria-label="Select topic">
+			<md-option ng-repeat="topic in topics" value="{{topic.get('key')}}">
 				{{topic.get('value')}}
 			</md-option>
 		</md-select>
 	</md-input-container>
 </div>
+
+<h1 class="md-title">Countries</h1>
+<div class="row">
+	<md-input-container class="md-input-container">
+		<md-select ng-model="ctrl.country" aria-label="Select country">
+			<md-option ng-repeat="country in countries" value="{{country.get('key')}}">
+				{{country.get('name')}}
+			</md-option>
+		</md-select>
+	</md-input-container>
+</div>
+
+<md-progress-linear ng-if="!topics.length || !countries.length"
+										md-mode="indeterminate"></md-progress-linear>

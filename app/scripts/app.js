@@ -19,11 +19,8 @@ angular
 		'ngTouch',
 		'chart.js'
 	])
-	.constant('RESOURCES', {
-		API: 'http://private-24e9-sandboxflux.apiary-mock.com'
-	})
 	.constant('ACTIONS', {
-		BUTTON_UPDATE: 'button-update',
+		COUNTRY_UPDATE: 'country-update',
 		TOPIC_UPDATE: 'poll-update'
 	})
 	.config(function ($routeProvider) {

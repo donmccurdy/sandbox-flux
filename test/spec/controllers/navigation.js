@@ -20,6 +20,7 @@ describe('Controller: NavigationCtrl', function () {
     isOpen = false;
     NavigationCtrl = $controller('NavigationCtrl', {
       $scope: scope,
+      $timeout: function (f) { f(); },
       $mdSidenav: function () {
         return {
           toggle: function () { isOpen = !isOpen; }
