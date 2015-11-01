@@ -1,0 +1,29 @@
+<div ng-controller="SidebarCtrl">
+	<md-toolbar class="md-theme-indigo">
+		<h1 class="md-toolbar-tools">Topics</h1>
+	</md-toolbar>
+	<md-content layout-padding>
+		<md-input-container class="md-input-container">
+			<label>Topic</label>
+			<md-select ng-model="ctrl.topic" aria-label="Select topic">
+				<md-option ng-repeat="topic in topics" value="{{topic.get('key')}}">
+					{{topic.get('value')}}
+				</md-option>
+			</md-select>
+		</md-input-container>
+	</md-content>
+
+	<md-toolbar class="md-theme-indigo">
+		<h1 class="md-toolbar-tools">Countries</h1>
+	</md-toolbar>
+	<md-content layout-padding>
+		<md-input-container class="md-input-container">
+			<label>Country</label>
+			<md-select ng-model="ctrl.country" aria-label="Select country">
+				<md-option ng-repeat="country in countries" value="{{country.get('key')}}">
+					{{country.get('name')}}
+				</md-option>
+			</md-select>
+		</md-input-container>
+	</md-content>
+</div>
