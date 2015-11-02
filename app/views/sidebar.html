@@ -5,7 +5,7 @@
 	<md-content layout-padding>
 		<md-input-container class="md-input-container">
 			<label>Topic</label>
-			<md-select ng-model="ctrl.topic" aria-label="Select topic">
+			<md-select ng-model="selectedTopic" disabled aria-label="Select topic">
 				<md-option ng-repeat="topic in topics" value="{{topic.get('key')}}">
 					{{topic.get('value')}}
 				</md-option>
@@ -19,7 +19,10 @@
 	<md-content layout-padding>
 		<md-input-container class="md-input-container">
 			<label>Country</label>
-			<md-select ng-model="ctrl.country" aria-label="Select country">
+			<md-select ng-model="selectedCountries" 
+								 ng-change="onCountryChange()"
+								 multiple="true"
+								 aria-label="Select country">
 				<md-option ng-repeat="country in countries" value="{{country.get('key')}}">
 					{{country.get('name')}}
 				</md-option>

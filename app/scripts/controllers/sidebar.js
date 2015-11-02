@@ -8,12 +8,19 @@
  * Controller of the sandboxFluxApp
  */
 angular.module('sandboxFluxApp')
-	.controller('SidebarCtrl', function ($scope, TopicStore, CountryStore) {
+	.controller('SidebarCtrl', function ($scope, TopicStore, CountryStore, ACTIONS) {
 		$scope.topics = TopicStore.topics;
 		$scope.countries = CountryStore.countries;
 
-		this.topic = '';
-		this.country = '';
+		$scope.selectedTopic = '';
+		$scope.selectedCountries = '';
+
+		$scope.onCountryChange = function () {
+			CountryStore.getDispatcher().dispatch({
+				actionType: ACTIONS.COUNTRY_SELECT,
+				selected: $scope.selectedCountries
+			});
+		};
 
 		var tokens = [
 			TopicStore.addListener(function () { $scope.topics = TopicStore.topics; }),

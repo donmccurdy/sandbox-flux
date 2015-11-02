@@ -16,6 +16,7 @@ angular.module('sandboxFluxApp')
       Store.call(this);
       this.__type = 'CountryStore';
       this.countries = [];
+      this.selected = [];
       this.init();
     };
 
@@ -26,6 +27,9 @@ angular.module('sandboxFluxApp')
       switch (payload.actionType) {
         case ACTIONS.COUNTRY_UPDATE:
           this.countries = payload.countries;
+          break;
+        case ACTIONS.COUNTRY_SELECT:
+          this.selected = payload.selected;
           break;
         default:
           return;
@@ -39,7 +43,7 @@ angular.module('sandboxFluxApp')
       success: function (countries) {
         instance.getDispatcher().dispatch({
           actionType: ACTIONS.COUNTRY_UPDATE,
-          countries: countries
+          countries: _.filter(countries, 'attributes.location')
         });
       },
       error: console.error.bind(console)

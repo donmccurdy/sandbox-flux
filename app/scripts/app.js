@@ -20,6 +20,7 @@ angular
 		'chart.js'
 	])
 	.constant('ACTIONS', {
+		COUNTRY_SELECT: 'country-select',
 		COUNTRY_UPDATE: 'country-update',
 		TOPIC_UPDATE: 'poll-update'
 	})
