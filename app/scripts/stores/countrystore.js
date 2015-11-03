@@ -39,11 +39,15 @@ angular.module('sandboxFluxApp')
 
     var instance = new CountryStore();
     var query = new Parse.Query(Country);
+    query.limit(300);
     query.find({
       success: function (countries) {
         instance.getDispatcher().dispatch({
           actionType: ACTIONS.COUNTRY_UPDATE,
-          countries: _.filter(countries, 'attributes.location')
+          countries: _(countries)
+                        .filter('attributes.location')
+                        .sortBy('attributes.name')
+                        .value()
         });
       },
       error: console.error.bind(console)

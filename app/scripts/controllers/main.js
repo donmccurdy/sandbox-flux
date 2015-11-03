@@ -26,11 +26,11 @@ angular.module('sandboxFluxApp')
 
 		var update = function () {
 			$scope.countries = CountryStore.selected || DEFAULT_COUNTRY;
-			
+
 			var endpoint = ENDPOINT
 				.replace('{countries}', $scope.countries.join(';') || DEFAULT_COUNTRY)
 				.replace('{indicator}', DEFAULT_INDICATOR);
-			
+
 			$http.jsonp(endpoint, {
 				params: {format: 'jsonp', per_page: 100, prefix: 'JSON_CALLBACK'}
 			})
@@ -52,6 +52,7 @@ angular.module('sandboxFluxApp')
 				})
 				.catch(console.error.bind(console));
 		};
+		update();
 
 		/* Store bindings
 		**************************************/
