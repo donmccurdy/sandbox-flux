@@ -1,11 +1,4 @@
 <div class="row">
-<canvas class="chart chart-line"
-				chart-data="data"
-				chart-labels="labels"
-				chart-series="series"
-				chart-legend="true"
-				chart-options="{
-					scaleBeginAtZero: true,
-					scaleShowVerticalLines: false
-				}"></canvas>
+	<indicator-chart ng-repeat="indicator in indicators"
+									 chart-indicator="{{indicator}}"></indicator-chart>
 </div>
