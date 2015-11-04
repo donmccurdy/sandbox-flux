@@ -1,4 +1,5 @@
-<div class="row">
-	<indicator-chart ng-repeat="indicator in indicators"
-									 chart-indicator="{{indicator}}"></indicator-chart>
-</div>
+<md-card ng-repeat="indicator in indicators">
+	<md-card-content>
+		<indicator-chart chart-indicator="{{indicator}}"></indicator-chart>
+	</md-card-content>
+</md-card>

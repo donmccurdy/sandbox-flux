@@ -8,7 +8,7 @@
  * Controller of the sandboxFluxApp
  */
 angular.module('sandboxFluxApp')
-  .controller('IndicatorChartCtrl', function ($scope, $attrs, $http, CountryStore) {
+  .controller('IndicatorChartCtrl', function ($scope, $attrs, $http, CountryStore, IndicatorStore) {
 		var ENDPOINT = 'http://api.worldbank.org/countries/{countries}/indicators/{indicator}',
 			DEFAULT_COUNTRY = '1w';
 
@@ -26,6 +26,10 @@ angular.module('sandboxFluxApp')
 		var update = function () {
 			$scope.countries = CountryStore.selected || DEFAULT_COUNTRY;
 
+			IndicatorStore.get($scope.chartIndicator).then(function (indicator) {
+				$scope.indicator = indicator;
+			});
+
 			var endpoint = ENDPOINT
 				.replace('{countries}', $scope.countries.join(';') || DEFAULT_COUNTRY)
 				.replace('{indicator}', $scope.chartIndicator);
@@ -41,9 +45,7 @@ angular.module('sandboxFluxApp')
 						.groupBy('country.id')
 						.value();
 
-					$scope.series = _.map(series, function (_, key) {
-						return key + ' ' + $scope.chartIndicator;
-					});
+					$scope.series = _.keys(series);
 					$scope.data = _.map(series, function (rows) {
 						return _.map(_.pluck(rows, 'value'), Number);
 					});
