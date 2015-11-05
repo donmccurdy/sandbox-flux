@@ -3,7 +3,7 @@
 describe('Service: Store', function () {
 
   // load the service's module
-  beforeEach(module('sandboxFluxApp'));
+  beforeEach(module('wdiApp'));
 
   // instantiate service
   var Store;

@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc service
- * @name sandboxFluxApp.CountryStore
+ * @name wdiApp.CountryStore
  * @description
  * # CountryStore
- * Factory in the sandboxFluxApp.
+ * Factory in the wdiApp.
  */
-angular.module('sandboxFluxApp')
+angular.module('wdiApp')
 	.factory('CountryStore', function (Store, ACTIONS) {
 
 		var Country = Parse.Object.extend('Country');

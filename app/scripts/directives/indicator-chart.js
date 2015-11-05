@@ -2,11 +2,11 @@
 
 /**
  * @ngdoc directive
- * @name sandboxFluxApp.directive:indicatorChart
+ * @name wdiApp.directive:indicatorChart
  * @description
  * # indicatorChart
  */
-angular.module('sandboxFluxApp')
+angular.module('wdiApp')
 	.directive('indicatorChart', function () {
 		return {
 			template: ''

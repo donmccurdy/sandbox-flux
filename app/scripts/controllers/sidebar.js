@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name sandboxFluxApp.controller:SidebarCtrl
+ * @name wdiApp.controller:SidebarCtrl
  * @description
  * # SidebarCtrl
- * Controller of the sandboxFluxApp
+ * Controller of the wdiApp
  */
-angular.module('sandboxFluxApp')
+angular.module('wdiApp')
 	.controller('SidebarCtrl', function ($scope, TopicStore, CountryStore, ACTIONS) {
 		$scope.topics = TopicStore.topics;
 		$scope.countries = CountryStore.countries;

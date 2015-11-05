@@ -3,7 +3,7 @@
 describe('Directive: indicatorChart', function () {
 
   // load the directive's module
-  beforeEach(module('sandboxFluxApp'));
+  beforeEach(module('wdiApp'));
 
   var element,
     scope;

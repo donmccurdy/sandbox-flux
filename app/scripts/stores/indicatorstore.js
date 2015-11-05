@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc service
- * @name sandboxFluxApp.IndicatorStore
+ * @name wdiApp.IndicatorStore
  * @description
  * # IndicatorStore
- * Factory in the sandboxFluxApp.
+ * Factory in the wdiApp.
  */
-angular.module('sandboxFluxApp')
+angular.module('wdiApp')
 	.factory('IndicatorStore', function (Store) {
 
 		var Indicator = Parse.Object.extend('Indicator');

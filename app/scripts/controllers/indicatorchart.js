@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name sandboxFluxApp.controller:IndicatorChartCtrl
+ * @name wdiApp.controller:IndicatorChartCtrl
  * @description
  * # IndicatorChartCtrl
- * Controller of the sandboxFluxApp
+ * Controller of the wdiApp
  */
-angular.module('sandboxFluxApp')
+angular.module('wdiApp')
   .controller('IndicatorChartCtrl', function ($scope, $attrs, $http, CountryStore, IndicatorStore) {
 		var ENDPOINT = 'http://api.worldbank.org/countries/{countries}/indicators/{indicator}',
 			DEFAULT_COUNTRY = '1w';

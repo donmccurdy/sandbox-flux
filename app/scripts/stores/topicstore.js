@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc service
- * @name sandboxFluxApp.TopicStore
+ * @name wdiApp.TopicStore
  * @description
  * # TopicStore
- * Factory in the sandboxFluxApp.
+ * Factory in the wdiApp.
  */
-angular.module('sandboxFluxApp')
+angular.module('wdiApp')
 	.factory('TopicStore', function (Store, ACTIONS) {
 
 		var Topic = Parse.Object.extend('Topic');

@@ -3,7 +3,7 @@
 describe('Controller: NavigationCtrl', function () {
 
   // load the controller's module
-  beforeEach(module('sandboxFluxApp'));
+  beforeEach(module('wdiApp'));
 
   // override _.debounce
   beforeEach(function () {

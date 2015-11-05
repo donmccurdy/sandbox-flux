@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name sandboxFluxApp.controller:NavigationCtrl
+ * @name wdiApp.controller:NavigationCtrl
  * @description
  * # NavigationCtrl
- * Controller of the sandboxFluxApp
+ * Controller of the wdiApp
  */
-angular.module('sandboxFluxApp')
+angular.module('wdiApp')
 	.controller('NavigationCtrl', function ($scope, $location, $timeout, $mdSidenav) {
 		$scope.toggleNavigation = _.debounce(function () {
 			$timeout(function () {

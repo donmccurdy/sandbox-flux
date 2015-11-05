@@ -1,5 +1,5 @@
 {
-  "name": "sandboxflux",
+  "name": "wdiApp",
   "private": true,
   "devDependencies": {
     "grunt": "^0.4.5",

@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc service
- * @name sandboxFluxApp.dispatcher
+ * @name wdiApp.dispatcher
  * @description
  * # dispatcher
- * Factory in the sandboxFluxApp.
+ * Factory in the wdiApp.
  */
-angular.module('sandboxFluxApp')
+angular.module('wdiApp')
 	.factory('dispatcher', function () {
 		return new Flux.Dispatcher();
 	});

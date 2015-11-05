@@ -2,14 +2,14 @@
 
 /**
  * @ngdoc overview
- * @name sandboxFluxApp
+ * @name wdiApp
  * @description
- * # sandboxFluxApp
+ * # wdiApp
  *
  * Main module of the application.
  */
 angular
-	.module('sandboxFluxApp', [
+	.module('wdiApp', [
 		'ngAnimate',
 		'ngCookies',
 		'ngMaterial',

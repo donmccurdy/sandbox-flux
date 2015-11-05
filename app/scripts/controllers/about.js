@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name sandboxFluxApp.controller:AboutCtrl
+ * @name wdiApp.controller:AboutCtrl
  * @description
  * # AboutCtrl
- * Controller of the sandboxFluxApp
+ * Controller of the wdiApp
  */
-angular.module('sandboxFluxApp')
+angular.module('wdiApp')
 	.controller('AboutCtrl', function () {
 		// TODO
 	});

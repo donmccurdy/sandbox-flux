@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc service
- * @name sandboxFluxApp.Store
+ * @name wdiApp.Store
  * @description
  * # Store
- * Factory in the sandboxFluxApp.
+ * Factory in the wdiApp.
  */
-angular.module('sandboxFluxApp')
+angular.module('wdiApp')
 	.factory('Store', function ($timeout, dispatcher) {
 
 		var Store = function () {
