@@ -22,7 +22,7 @@ angular
 	.constant('ACTIONS', {
 		COUNTRY_SELECT: 'country-select',
 		COUNTRY_UPDATE: 'country-update',
-		TOPIC_UPDATE: 'poll-update'
+		TOPIC_UPDATE: 'topic-update'
 	})
 	.config(function ($routeProvider) {
 		$routeProvider

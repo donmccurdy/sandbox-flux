@@ -9,14 +9,13 @@
  */
 angular.module('wdiApp')
   .controller('IndicatorChartCtrl', function ($scope, $attrs, $http, CountryStore, IndicatorStore) {
-		var ENDPOINT = 'http://api.worldbank.org/countries/{countries}/indicators/{indicator}',
-			DEFAULT_COUNTRY = '1w';
+		var ENDPOINT = 'http://api.worldbank.org/countries/{countries}/indicators/{indicator}';
 
 		/* Chart data
 		**************************************/
 
-		$scope.countries = [DEFAULT_COUNTRY];
-		$scope.series = [DEFAULT_COUNTRY + ' ' + $scope.chartIndicator];
+		$scope.countries = [];
+		$scope.series = [];
 		$scope.data = [];
 		$scope.labels = [];
 
@@ -24,14 +23,19 @@ angular.module('wdiApp')
 		**************************************/
 
 		var update = function () {
-			$scope.countries = CountryStore.selected || DEFAULT_COUNTRY;
+			$scope.countries = CountryStore.selected();
+
+			if (_.isEmpty($scope.countries)) {
+				$scope.series = $scope.data = $scope.labels = [];
+				return;
+			}
 
 			IndicatorStore.get($scope.chartIndicator).then(function (indicator) {
 				$scope.indicator = indicator;
 			});
 
 			var endpoint = ENDPOINT
-				.replace('{countries}', $scope.countries.join(';') || DEFAULT_COUNTRY)
+				.replace('{countries}', _.pluck($scope.countries, 'attributes.key').join(';'))
 				.replace('{indicator}', $scope.chartIndicator);
 
 			$http.jsonp(endpoint, {
@@ -45,7 +49,9 @@ angular.module('wdiApp')
 						.groupBy('country.id')
 						.value();
 
-					$scope.series = _.keys(series);
+					$scope.series = _.map(series, function (country, key) {
+						return CountryStore.getByIso2Code(key).get('name');
+					});
 					$scope.data = _.map(series, function (rows) {
 						return _.map(_.pluck(rows, 'value'), Number);
 					});
@@ -53,7 +59,10 @@ angular.module('wdiApp')
 				})
 				.catch(console.error.bind(console));
 		};
-		update();
+
+		if (!_.isEmpty(CountryStore.selected())) {
+			update();
+		}
 
 		/* Store bindings
 		**************************************/

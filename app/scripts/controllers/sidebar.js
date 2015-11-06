@@ -9,11 +9,11 @@
  */
 angular.module('wdiApp')
 	.controller('SidebarCtrl', function ($scope, TopicStore, CountryStore, ACTIONS) {
-		$scope.topics = TopicStore.topics;
-		$scope.countries = CountryStore.countries;
+		$scope.topics = TopicStore.all();
+		$scope.countries = CountryStore.all();
 
 		$scope.selectedTopic = '';
-		$scope.selectedCountries = '';
+		$scope.selectedCountries = [];
 
 		$scope.onCountryChange = function () {
 			CountryStore.getDispatcher().dispatch({
@@ -23,8 +23,11 @@ angular.module('wdiApp')
 		};
 
 		var tokens = [
-			TopicStore.addListener(function () { $scope.topics = TopicStore.topics; }),
-			CountryStore.addListener(function () { $scope.countries = CountryStore.countries; })
+			TopicStore.addListener(function () { $scope.topics = TopicStore.all(); }),
+			CountryStore.addListener(function () {
+				$scope.countries = CountryStore.all();
+				$scope.selectedCountries = CountryStore.selected();
+			})
 		];
 
 		$scope.$on('$destroy', function () {

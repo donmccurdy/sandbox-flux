@@ -1,5 +1,11 @@
-<md-card ng-repeat="indicator in indicators">
+
+
+<md-card ng-if="countries.length" ng-repeat="indicator in indicators">
 	<md-card-content>
 		<indicator-chart chart-indicator="{{indicator}}"></indicator-chart>
 	</md-card-content>
 </md-card>
+
+<div class="row" ng-if="!countries.length">
+	Select a country.
+</div>
