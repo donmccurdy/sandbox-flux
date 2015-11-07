@@ -19,10 +19,14 @@ angular
 		'ngTouch',
 		'chart.js'
 	])
-	.constant('ACTIONS', {
-		COUNTRY_SELECT: 'country-select',
+	.constant('ACTIONS', {	
+		TOPIC_UPDATE: 'topic-update',
+		COUNTRY_SET_SELECTED: 'country-set-selected',
 		COUNTRY_UPDATE: 'country-update',
-		TOPIC_UPDATE: 'topic-update'
+		COUNTRY_SELECT: 'country-select',
+		COUNTRY_DESELECT: 'country-deselect',
+		INDICATOR_SELECT: 'indicator-select',
+		INDICATOR_DESELECT: 'indicator-deselect'
 	})
 	.config(function ($routeProvider) {
 		$routeProvider

@@ -8,13 +8,13 @@
  * Controller of the wdiApp
  */
 angular.module('wdiApp')
-  .controller('IndicatorChartCtrl', function ($scope, $attrs, $http, CountryStore, IndicatorStore) {
+  .controller('IndicatorChartCtrl', function ($scope, $attrs, $http, CountryStore, SelectionStore) {
 		var ENDPOINT = 'http://api.worldbank.org/countries/{countries}/indicators/{indicator}';
 
 		/* Chart data
 		**************************************/
 
-		$scope.countries = [];
+		$scope.countries = SelectionStore.countries();
 		$scope.series = [];
 		$scope.data = [];
 		$scope.labels = [];
@@ -23,20 +23,14 @@ angular.module('wdiApp')
 		**************************************/
 
 		var update = function () {
-			$scope.countries = CountryStore.selected();
-
 			if (_.isEmpty($scope.countries)) {
 				$scope.series = $scope.data = $scope.labels = [];
 				return;
 			}
 
-			IndicatorStore.get($scope.chartIndicator).then(function (indicator) {
-				$scope.indicator = indicator;
-			});
-
 			var endpoint = ENDPOINT
 				.replace('{countries}', _.pluck($scope.countries, 'attributes.key').join(';'))
-				.replace('{indicator}', $scope.chartIndicator);
+				.replace('{indicator}', $scope.indicator.get('key'));
 
 			$http.jsonp(endpoint, {
 				params: {format: 'jsonp', per_page: 100, prefix: 'JSON_CALLBACK'}
@@ -60,7 +54,7 @@ angular.module('wdiApp')
 				.catch(console.error.bind(console));
 		};
 
-		if (!_.isEmpty(CountryStore.selected())) {
+		if (!_.isEmpty(SelectionStore.countries())) {
 			update();
 		}
 
@@ -68,7 +62,14 @@ angular.module('wdiApp')
 		**************************************/
 
 		var tokens = [
-			CountryStore.addListener(update)
+			SelectionStore.addListener(function () {
+				var aKeys = _.pluck($scope.countries, 'attributes.key'),
+					bKeys = _.pluck(SelectionStore.countries(), 'attributes.key');
+				if (!_.isEqual(aKeys, bKeys)) {
+					$scope.countries = SelectionStore.countries();
+					update();
+				}
+			})
 		];
 
 		$scope.$on('$destroy', function () {

@@ -11,23 +11,59 @@
 								 multiple="true"
 								 aria-label="Select country">
 				<md-option ng-repeat="country in countries" ng-value="country">
-					{{country.get('name')}}
+					{{ country.get('name') }}
 				</md-option>
 			</md-select>
 		</md-input-container>
 	</md-content>
 
 	<md-toolbar class="md-theme-indigo">
-		<h1 class="md-toolbar-tools">Topics</h1>
+		<h1 class="md-toolbar-tools">Create Visualization</h1>
 	</md-toolbar>
+
 	<md-content layout-padding>
-		<md-input-container class="md-input-container">
+
+		<md-input-container class="md-input-container md-create-group">
 			<label>Topic</label>
-			<md-select ng-model="selectedTopic" disabled aria-label="Select topic">
-				<md-option ng-repeat="topic in topics" value="{{topic.get('key')}}">
-					{{topic.get('value')}}
+			<md-select ng-model="selectedTopic"
+								 ng-change="onTopicChange()"
+								 ng-model-options="{trackBy: '$value.attributes.key'}"
+								 aria-label="Select topic">
+				<md-option ng-repeat="topic in topics" ng-value="topic">
+					{{ topic.get('value') }}
 				</md-option>
 			</md-select>
 		</md-input-container>
+
+		<div class="md-create-group" ng-show="selectedTopic && !indicators.length">
+			<md-progress-linear md-mode="indeterminate"></md-progress-linear>
+		</div>
+
+		<md-input-container class="md-input-container md-create-group" ng-show="indicators.length">
+			<label>Indicator</label>
+			<md-select ng-model="selectedIndicator"
+								 aria-label="Select indicator">
+				<md-option ng-repeat="indicator in indicators" ng-value="indicator">
+					{{ indicator.get('name') }}
+				</md-option>
+			</md-select>
+		</md-input-container>
+		<div ng-if="selectedIndicator" class="md-caption md-create-group">
+			{{ selectedIndicator.get('sourceNote') }}
+			<i>{{ selectedIndicator.get('sourceOrganization') }}</i>
+		</div>
+		
+		<div class="md-create-group">
+			<div class="md-subhead">Chart type</div>
+			<md-radio-group ng-model="selectedType">
+					<md-radio-button value="line" class="md-primary" ng-selected="true">Line</md-radio-button>
+					<md-radio-button value="bar" class="md-primary" disabled>Bar</md-radio-button>
+					<md-radio-button value="pie" class="md-primary" disabled>Pie</md-radio-button>
+			</md-radio-group>
+		</div>
+
+		<md-button class="md-raised md-primary right" ng-click="onCreate()" aria-label="Create">
+			<md-icon md-svg-src="images/icons/add.svg"></md-icon>
+		</md-button>
 	</md-content>
 </div>

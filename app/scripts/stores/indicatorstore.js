@@ -12,6 +12,8 @@ angular.module('wdiApp')
 
 		var Indicator = Parse.Object.extend('Indicator');
 
+		var LIMIT = 1000;
+
 		var IndicatorStore = function () {
 			Store.call(this);
 			this.__type = 'IndicatorStore';
@@ -58,18 +60,19 @@ angular.module('wdiApp')
 		 * @return {Promise<Array<Indicator>>}
 		 */
 		IndicatorStore.prototype.getByTopic = function (topic) {
-			if (this.__topics[topic.objectId]) {
-				console.error('Cached topic not implemented.');
+			if (topic.get('key') in this.__topics) {
+				return Parse.Promise.as(this.__topics[topic.get('key')]);
 			}
 
 			var query = new Parse.Query(Indicator);
 			return query
 				.containsAll('topics', [topic])
+				.limit(LIMIT)
 				.find()
 				.then(function (indicators) {
-					console.log(indicators);
-					// TODO
-				})
+					this.__topics[topic.get('key')] = indicators;
+					return indicators;
+				}.bind(this))
 				.fail(console.error.bind(console));
 		};
 

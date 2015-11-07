@@ -8,16 +8,17 @@
  * Controller of the wdiApp
  */
 angular.module('wdiApp')
-	.controller('MainCtrl', function ($scope, CountryStore) {
-		$scope.countries = CountryStore.selected();
-		$scope.indicators = ['SP.POP.TOTL', 'SL.TLF.TOTL.IN'];
+	.controller('MainCtrl', function ($scope, SelectionStore) {
+		$scope.countries = SelectionStore.countries();
+		$scope.indicators = SelectionStore.indicators();
 
 		/* Store bindings
 		**************************************/
 
 		var tokens = [
-			CountryStore.addListener(function () {
-				$scope.countries = CountryStore.selected();
+			SelectionStore.addListener(function () {
+				$scope.countries = SelectionStore.countries();
+				$scope.indicators = SelectionStore.indicators();
 			})
 		];
 

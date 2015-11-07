@@ -12,11 +12,12 @@ angular.module('wdiApp')
 
 		var Country = Parse.Object.extend('Country');
 
+		var LIMIT = 300;
+
 		var CountryStore = function () {
 			Store.call(this);
 			this.__type = 'CountryStore';
 			this.__countries = {};
-			this.__selected = [];
 			this.init();
 		};
 
@@ -27,9 +28,6 @@ angular.module('wdiApp')
 			switch (payload.actionType) {
 				case ACTIONS.COUNTRY_UPDATE:
 					this.__countries = _.indexBy(payload.countries, 'attributes.key');
-					break;
-				case ACTIONS.COUNTRY_SELECT:
-					this.__selected = payload.selected;
 					break;
 				default:
 					return;
@@ -65,19 +63,11 @@ angular.module('wdiApp')
 			return _.values(this.__countries);
 		};
 
-		/**
-		 * Returns a list of selected Country instances.
-		 * @return {Array<Country>}
-		 */
-		CountryStore.prototype.selected = function () {
-			return this.__selected;
-		};
-
 		var instance = new CountryStore();
 
 		var query = new Parse.Query(Country);
 		query
-			.limit(300)
+			.limit(LIMIT)
 			.find()
 			.then(function (countries) {
 				instance.getDispatcher().dispatch({
@@ -88,7 +78,7 @@ angular.module('wdiApp')
 						.value()
 				});
 				instance.getDispatcher().dispatch({
-					actionType: ACTIONS.COUNTRY_SELECT,
+					actionType: ACTIONS.COUNTRY_SET_SELECTED,
 					selected: [instance.get('USA'), instance.get('CAN')]
 				});
 			})

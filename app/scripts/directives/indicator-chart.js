@@ -23,7 +23,7 @@ angular.module('wdiApp')
 +	'<p>{{ indicator.attributes.sourceNote }}</p>'
 +	'<p><i>{{ indicator.attributes.sourceOrganization }}</i></p>',
 			restrict: 'E',
-			scope: {chartIndicator: '@'},
+			scope: {indicator: '='},
 			controller: 'IndicatorChartCtrl'
 		};
 	});
