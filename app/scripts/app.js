@@ -45,7 +45,11 @@ angular
 			});
 	})
 	.config(function ($mdThemingProvider) {
-		$mdThemingProvider.theme('default');
+		$mdThemingProvider.definePalette('sage', $mdThemingProvider.extendPalette('red', {
+			'500': '75B5AA'
+		}));
+		$mdThemingProvider.theme('default')
+			.primaryPalette('sage');
 	})
 	.config(function () {
 		Parse.initialize(

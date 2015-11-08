@@ -16,6 +16,10 @@ body {
 /* Header
 **************************************/
 
+.main-header {
+	z-index: 100;
+}
+
 .md-button.active {
 	border-bottom: 2px solid #fff;
 	border-bottom-left-radius: 0;
