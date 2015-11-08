@@ -1,6 +1,13 @@
-<md-card ng-if="countries.length" ng-repeat="indicator in indicators">
+<md-card class="indicator-card"
+		 ng-if="countries.length"
+		 ng-repeat="indicator in indicators">
 	<md-card-content>
 		<indicator-chart indicator="indicator"></indicator-chart>
+		<md-button class="indicator-x md-icon-button"
+							 ng-click="remove(indicator)"
+							 aria-label="Favorite">
+			<md-icon md-svg-icon="images/icons/clear.svg"></md-icon>
+		</md-button>
 	</md-card-content>
 </md-card>
 

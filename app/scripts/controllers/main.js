@@ -8,9 +8,16 @@
  * Controller of the wdiApp
  */
 angular.module('wdiApp')
-	.controller('MainCtrl', function ($scope, SelectionStore) {
+	.controller('MainCtrl', function ($scope, SelectionStore, ACTIONS) {
 		$scope.countries = SelectionStore.countries();
 		$scope.indicators = SelectionStore.indicators();
+
+		$scope.remove = function (indicator) {
+			SelectionStore.getDispatcher().dispatch({
+				actionType: ACTIONS.INDICATOR_DESELECT,
+				indicator: indicator
+			});
+		};
 
 		/* Store bindings
 		**************************************/

@@ -30,13 +30,13 @@ angular.module('wdiApp')
 					this.__countries.push(payload.country);
 					break;
 				case ACTIONS.COUNTRY_DESELECT:
-					this.__countries = _.remove(this.__countries, payload.country);
+					_.remove(this.__countries, payload.country);
 					break;
 				case ACTIONS.INDICATOR_SELECT:
 					this.__indicators.push(payload.indicator);
 					break;
 				case ACTIONS.INDICATOR_DESELECT:
-					this.__indicators = _.remove(this.__indicators, payload.indicator);
+					_.remove(this.__indicators, payload.indicator);
 					break;
 				default:
 					return;
