@@ -31,6 +31,13 @@ angular.module('wdiApp')
 			});
 		};
 
+		$scope.clearCountries = function () {
+			CountryStore.getDispatcher().dispatch({
+				actionType: ACTIONS.COUNTRY_SET_SELECTED,
+				selected: []
+			});
+		};
+
 		$scope.onTopicChange = function () {
 			IndicatorStore.getByTopic($scope.selectedTopic)
 				.then(function (indicators) {
