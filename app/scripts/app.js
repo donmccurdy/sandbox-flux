@@ -45,7 +45,7 @@ angular
 			});
 	})
 	.config(function ($mdThemingProvider) {
-		$mdThemingProvider.definePalette('sage', $mdThemingProvider.extendPalette('red', {
+		$mdThemingProvider.definePalette('sage', $mdThemingProvider.extendPalette('teal', {
 			'500': '75B5AA'
 		}));
 		$mdThemingProvider.theme('default')
