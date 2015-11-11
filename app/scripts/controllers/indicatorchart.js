@@ -33,9 +33,13 @@ angular.module('wdiApp')
 				.replace('{indicator}', $scope.indicator.get('key'));
 
 			$http.jsonp(endpoint, {
-				params: {format: 'jsonp', per_page: 100, prefix: 'JSON_CALLBACK'}
+				params: {format: 'jsonp', per_page: 1000, prefix: 'JSON_CALLBACK'}
 			})
 				.then(function (response) {
+					if (response.data[0].pages > 1) {
+						console.error('API returned incomplete data.');
+					}
+
 					var series = _(response.data[1])
 						.filter('value')
 						.filter(function (row) { return row.date % 5 === 0; })
