@@ -20,8 +20,12 @@ angular.module('wdiApp')
 +						'scaleBeginAtZero: true,'
 +						'scaleShowVerticalLines: false'
 +					'}"></canvas>'
-+	'<p>{{ indicator.attributes.sourceNote }}</p>'
-+	'<p><i>{{ indicator.attributes.sourceOrganization }}</i></p>',
++	'<blockquote class="indicator-notes">'
++		'{{ indicator.attributes.sourceNote }}'
++	'</blockquote>'
++	'<p class="indicator-source">'
++		'{{ indicator.attributes.sourceOrganization }}'
++	'</p>',
 			restrict: 'E',
 			scope: {indicator: '='},
 			controller: 'IndicatorChartCtrl'

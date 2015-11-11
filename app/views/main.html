@@ -11,10 +11,8 @@
 	</md-card-content>
 </md-card>
 
-<div class="row" ng-if="!countries.length">
-	Select a country.
-</div>
-
-<div class="row" ng-if="countries.length && !indicators.length">
-	Create a visualization.
+<div ng-if="!indicators.length || !countries.length" class="row placeholder md-display-1">
+	<md-icon class="placeholder-icon" md-svg-icon="images/icons/equalizer.svg"></md-icon>
+	<span ng-if="!countries.length">Select a country.</span>
+	<span ng-if="countries.length && !indicators.length">Create a visualization.</span>
 </div>

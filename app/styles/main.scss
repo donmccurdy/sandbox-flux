@@ -4,7 +4,15 @@
 /* Variables
 **************************************/
 
+// Breakpoints
+$widthSm: 600px;
+
+// Sizing
+$baseWidth: 960px;
+
+// Colors
 $offWhite: #FAFAFA;
+$border: #EEE;
 
 /* Core
 **************************************/
@@ -62,11 +70,30 @@ body {
     p:last-child	{ margin-bottom: 0; }
 }
 
+/* Tutorial
+**************************************/
+
+.placeholder {
+	text-align: center;
+	font-weight: 200;
+	color: #BDBDBD;
+}
+
+.placeholder-icon {
+	display: block;
+	height: 60px;
+	width: 60px;
+	color: #CCC;
+}
+
 /* Indicator charts
 **************************************/
 
 .indicator-card {
 	position: relative;
+	width: 100%;
+	max-width: $baseWidth;
+	margin: 2em;
 }
 
 .indicator-x {
@@ -77,6 +104,31 @@ body {
 
 	opacity: 0.5;
 	&:hover { opacity: 1.0; }
+}
+
+.indicator-notes {
+	max-height: 8em;
+	overflow: auto;
+
+	margin-left: 0;
+	margin-right: 0;
+	padding: 0.5em 20px;
+	line-height: 2em;
+
+	border: 2px solid $border;
+	border-left: 4px solid rgba(117, 181, 170, 0.73);
+	background: $offWhite;
+}
+
+.indicator-source {
+	text-align: right;
+	font-style: italic;
+}
+
+@media screen and (max-width: $widthSm) {
+	.indicator-card {
+		margin: 8px;
+	}
 }
 
 /* Browse Happy
