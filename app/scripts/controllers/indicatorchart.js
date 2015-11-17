@@ -8,8 +8,8 @@
  * Controller of the wdiApp
  */
 angular.module('wdiApp')
-  .controller('IndicatorChartCtrl', function ($scope, $attrs, $http, CountryStore, SelectionStore) {
-		var ENDPOINT = 'http://api.worldbank.org/countries/{countries}/indicators/{indicator}';
+  .controller('IndicatorChartCtrl', function ($scope, $attrs, $timeout, CountryStore, SelectionStore) {
+		var IndicatorCountrySeries = Parse.Object.extend('IndicatorCountrySeries');
 
 		/* Chart data
 		**************************************/
@@ -28,34 +28,35 @@ angular.module('wdiApp')
 				return;
 			}
 
-			var endpoint = ENDPOINT
-				.replace('{countries}', _.pluck($scope.countries, 'attributes.key').join(';'))
-				.replace('{indicator}', $scope.indicator.get('key'));
+			(new Parse.Query(IndicatorCountrySeries))
+				.equalTo('indicatorKey', $scope.indicator.get('key'))
+				.containedIn('countryKey', _.pluck($scope.countries, 'attributes.iso2Code'))
+				.find()
+				.then(function (rows) {
+					$timeout(function () {
+						var sample = function (point, i) { return i % 5 === 0; };
 
-			$http.jsonp(endpoint, {
-				params: {format: 'jsonp', per_page: 1000, prefix: 'JSON_CALLBACK'}
-			})
-				.then(function (response) {
-					if (response.data[0].pages > 1) {
-						console.error('API returned incomplete data.');
-					}
+						if (_.isEmpty(rows)) { return; }
 
-					var series = _(response.data[1])
-						.filter('value')
-						.filter(function (row) { return row.date % 5 === 0; })
-						.sortBy('date')
-						.groupBy('country.id')
-						.value();
-
-					$scope.series = _.map(series, function (country, key) {
-						return CountryStore.getByIso2Code(key).get('name');
+						$scope.data = _(rows)
+							.pluck('attributes.series')
+							.map(_.curry(_.pluck)(_, 'value'))
+							.map(_.curry(_.filter)(_, sample))
+							.value();
+						$scope.labels = _(rows[0])
+							.thru(function (row) { return row.get('series'); })
+							.filter(sample)
+							.pluck('date')
+							.value();
+						$scope.series = _(rows)
+							.pluck('attributes.countryKey')
+							.map(CountryStore.getByIso2Code, CountryStore)
+							.pluck('attributes.name')
+							.value();
 					});
-					$scope.data = _.map(series, function (rows) {
-						return _.map(_.pluck(rows, 'value'), Number);
-					});
-					$scope.labels = _.pluck(_.values(series)[0], 'date');
 				})
-				.catch(console.error.bind(console));
+				.fail(console.error.bind(console));
+
 		};
 
 		if (!_.isEmpty(SelectionStore.countries())) {
