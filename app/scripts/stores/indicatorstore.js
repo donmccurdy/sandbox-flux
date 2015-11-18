@@ -51,6 +51,7 @@ angular.module('wdiApp')
 					this.__indicators[key] = _.first(indicators);
 					return this.__indicators[key];
 				}.bind(this))
+				.then(this.__digest)
 				.fail(console.error.bind(console));
 		};
 
@@ -73,6 +74,7 @@ angular.module('wdiApp')
 					this.__topics[topic.get('key')] = indicators;
 					return indicators;
 				}.bind(this))
+				.then(this.__digest)
 				.fail(console.error.bind(console));
 		};
 

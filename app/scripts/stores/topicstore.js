@@ -54,10 +54,10 @@ angular.module('wdiApp')
 
 		var query = new Parse.Query(Topic);
 		query.find().then(function (topics) {
-				instance.getDispatcher().dispatch({
-					actionType: ACTIONS.TOPIC_UPDATE,
-					topics: topics
-				});
+			instance.getDispatcher().dispatch({
+				actionType: ACTIONS.TOPIC_UPDATE,
+				topics: topics
+			});
 		}).fail(console.error.bind(console));
 
 		return instance;
