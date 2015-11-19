@@ -8,7 +8,8 @@
  * Controller of the wdiApp
  */
 angular.module('wdiApp')
-  .controller('IndicatorChartCtrl', function ($scope, $attrs, $timeout, CountryStore, SelectionStore) {
+  .controller('IndicatorChartCtrl', function (
+  		$scope, $attrs, $timeout, CountryStore, SelectionStore, FORMAT) {
 		var IndicatorCountrySeries = Parse.Object.extend('IndicatorCountrySeries');
 
 		/* Chart data
@@ -48,6 +49,7 @@ angular.module('wdiApp')
 							.pluck('series')
 							.map(_.curry(_.pluck)(_, 'value'))
 							.map(_.curry(_.filter)(_, sample))
+							.map(_.curry(_.map)(_, FORMAT.Number))
 							.value();
 						$scope.labels = _(rows[0].series)
 							.filter(sample)

@@ -19,7 +19,7 @@ angular
 		'ngTouch',
 		'chart.js'
 	])
-	.constant('ACTIONS', {	
+	.constant('ACTIONS', {
 		TOPIC_UPDATE: 'topic-update',
 		COUNTRY_SET_SELECTED: 'country-set-selected',
 		COUNTRY_UPDATE: 'country-update',
@@ -27,6 +27,12 @@ angular
 		COUNTRY_DESELECT: 'country-deselect',
 		INDICATOR_SELECT: 'indicator-select',
 		INDICATOR_DESELECT: 'indicator-deselect'
+	})
+	.constant('FORMAT', {
+		Number: function (n) {
+			return (n === Number(n) && n % 1 === 0)
+				? n : (Math.round(n * 100) / 100);
+		}
 	})
 	.config(function ($routeProvider) {
 		$routeProvider
