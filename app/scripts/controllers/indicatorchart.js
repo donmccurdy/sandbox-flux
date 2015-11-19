@@ -38,18 +38,23 @@ angular.module('wdiApp')
 
 						if (_.isEmpty(rows)) { return; }
 
+						rows = _.map(rows, function (row) {
+							return _.extend(row.attributes, {
+								series: _.clone(row.get('series')).reverse() // ascending by year
+							});
+						});
+
 						$scope.data = _(rows)
-							.pluck('attributes.series')
+							.pluck('series')
 							.map(_.curry(_.pluck)(_, 'value'))
 							.map(_.curry(_.filter)(_, sample))
 							.value();
-						$scope.labels = _(rows[0])
-							.thru(function (row) { return row.get('series'); })
+						$scope.labels = _(rows[0].series)
 							.filter(sample)
 							.pluck('date')
 							.value();
 						$scope.series = _(rows)
-							.pluck('attributes.countryKey')
+							.pluck('countryKey')
 							.map(CountryStore.getByIso2Code, CountryStore)
 							.pluck('attributes.name')
 							.value();
