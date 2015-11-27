@@ -1,0 +1,28 @@
+@import "common";
+
+/* About
+**************************************/
+
+.about-content {
+    width: 100%;
+    flex-grow: 1;
+}
+
+.about-content md-card {
+	max-width: 800px;
+	margin: 2em auto;
+}
+
+.about-content md-card-content {
+	padding: 2em;
+}
+
+.about-content h2:first-child {
+	margin-top: 0;
+}
+
+.about-content p {
+	font-size: 1.2em;
+	line-height: 1.5em;
+	font-weight: 300;
+}

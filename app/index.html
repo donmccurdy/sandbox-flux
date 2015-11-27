@@ -12,8 +12,10 @@
     <link rel="stylesheet" href="bower_components/angular-chart.js/dist/angular-chart.css" />
     <!-- endbower -->
     <!-- endbuild -->
-    <!-- build:css(.tmp) styles/main.css -->
+    <!-- build:css(.tmp) styles/*.css -->
     <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/sidebar.css">
+    <link rel="stylesheet" href="styles/about.css">
     <!-- endbuild -->
   </head>
   <body ng-app="wdiApp" ng-controller="NavigationCtrl" layout="column">
@@ -43,7 +45,7 @@
                   ng-show="isActive('/')"
                   src="'views/sidebar.html'"
                   layout="column"
-                  class="md-sidenav-left md-whiteframe-z2" 
+                  class="md-sidenav-left md-whiteframe-z2"
                   md-component-id="navigation"
                   md-is-locked-open="$mdMedia('gt-sm')">
       </md-sidenav>
