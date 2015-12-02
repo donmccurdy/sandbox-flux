@@ -28,6 +28,7 @@ body {
 **************************************/
 
 .placeholder {
+	margin: auto;
 	text-align: center;
 	font-weight: 200;
 	color: #BDBDBD;
@@ -44,10 +45,14 @@ body {
 **************************************/
 
 .indicator-card {
+	-webkit-flex-shrink: 0;
+	-moz-flex-shrink: 0;
+	-ms-flex-shrink: 0;
+	flex-shrink: 0; // Fixes an overflow issue in Safari.
 	position: relative;
 	width: 100%;
 	max-width: $baseWidth;
-	margin: 2em;
+	margin: 2em auto;
 }
 
 .indicator-x {
