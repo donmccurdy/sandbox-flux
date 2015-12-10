@@ -8,7 +8,7 @@
  * Factory in the wdiApp.
  */
 angular.module('wdiApp')
-	.factory('CountryStore', function (Store, ACTIONS) {
+	.factory('CountryStore', function (Store, history, ACTIONS) {
 
 		var Country = Parse.Object.extend('Country');
 
@@ -79,7 +79,9 @@ angular.module('wdiApp')
 				});
 				instance.getDispatcher().dispatch({
 					actionType: ACTIONS.COUNTRY_SET_SELECTED,
-					selected: [instance.get('USA'), instance.get('CAN')]
+					selected: _.map(history.get('countries'), function (key) {
+						return instance.get(key);
+					})
 				});
 			})
 			.fail(console.error.bind(console));

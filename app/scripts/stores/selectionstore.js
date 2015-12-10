@@ -8,7 +8,7 @@
  * Factory in the wdiApp.
  */
 angular.module('wdiApp')
-	.factory('SelectionStore', function (Store, IndicatorStore, CountryStore, ACTIONS) {
+	.factory('SelectionStore', function (Store, IndicatorStore, CountryStore, history, ACTIONS) {
 
 		var SelectionStore = function () {
 			Store.call(this);
@@ -41,6 +41,7 @@ angular.module('wdiApp')
 				default:
 					return;
 			}
+			history.set('countries', _.pluck(this.__countries, 'attributes.key'));
 			this.__emitChange();
 		};
 

@@ -8,9 +8,13 @@
  * Controller of the wdiApp
  */
 angular.module('wdiApp')
-	.controller('MainCtrl', function ($scope, SelectionStore, ACTIONS) {
+	.controller('MainCtrl', function ($scope, history, SelectionStore, ACTIONS) {
 		$scope.countries = SelectionStore.countries();
 		$scope.indicators = SelectionStore.indicators();
+
+		// Re-publish history state when the controller loads, as state may
+		// have been dropped from the URL on other pages.
+		history.publish();
 
 		$scope.remove = function (indicator) {
 			SelectionStore.getDispatcher().dispatch({
