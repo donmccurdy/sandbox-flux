@@ -8,7 +8,7 @@
  * Controller of the wdiApp
  */
 angular.module('wdiApp')
-	.controller('MainCtrl', function ($scope, history, SelectionStore, ACTIONS) {
+	.controller('MainCtrl', function ($scope, SelectionStore, history, ACTIONS) {
 		$scope.countries = SelectionStore.countries();
 		$scope.indicators = SelectionStore.indicators();
 

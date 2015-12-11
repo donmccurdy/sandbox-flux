@@ -25,6 +25,7 @@ angular
 		COUNTRY_UPDATE: 'country-update',
 		COUNTRY_SELECT: 'country-select',
 		COUNTRY_DESELECT: 'country-deselect',
+		INDICATOR_SET_SELECTED: 'indicator-set-selected',
 		INDICATOR_SELECT: 'indicator-select',
 		INDICATOR_DESELECT: 'indicator-deselect'
 	})

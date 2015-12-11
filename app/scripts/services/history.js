@@ -9,11 +9,20 @@
  */
 angular.module('wdiApp')
 	.service('history', function ($route) {
-		var KEYS = ['countries'];
+		var KEYS = ['countries', 'indicators'];
 
 		this.state = _.merge({
 			countries: ['USA', 'CAN'],
+			indicators: [],
 		}, _.pick($route.current.params, KEYS));
+
+		this.state.countries = _.isArray(this.state.countries)
+			? this.state.countries
+			: [this.state.countries];
+
+		this.state.indicators = _.isArray(this.state.indicators)
+			? this.state.indicators
+			: [this.state.indicators];
 
 		this.get = function (key) {
 			this.validate(key);
