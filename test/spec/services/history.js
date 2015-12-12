@@ -3,7 +3,13 @@
 describe('Service: history', function () {
 
   // load the service's module
-  beforeEach(module('wdiApp'));
+  beforeEach(function () {
+    module('wdiApp', function ($provide) {
+      $provide.service('$route', function () {
+        this.current = {};
+      });
+    });
+  });
 
   // instantiate service
   var history;
