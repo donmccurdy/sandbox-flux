@@ -2,19 +2,23 @@
 
 describe('Directive: indicatorChart', function () {
 
-  // load the directive's module
-  beforeEach(module('wdiApp'));
+	// load the directive's module
+	beforeEach(function () {
+		module('wdiApp', function ($controllerProvider) {
+			$controllerProvider.register('IndicatorChartCtrl', function () {});
+		});
+	});
 
-  var element,
-    scope;
+	var element,
+		scope;
 
-  beforeEach(inject(function ($rootScope) {
-    scope = $rootScope.$new();
-  }));
+	beforeEach(inject(function ($rootScope) {
+		scope = $rootScope.$new();
+	}));
 
-  it('should just exist', inject(function ($compile) {
-    element = angular.element('<indicator-chart></indicator-chart>');
-    element = $compile(element)(scope);
-    expect(true).toBe(true);
-  }));
+	it('should just exist', inject(function ($compile) {
+		element = angular.element('<indicator-chart></indicator-chart>');
+		element = $compile(element)(scope, function () {});
+		expect(true).toBe(true);
+	}));
 });
