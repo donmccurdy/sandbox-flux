@@ -5,16 +5,22 @@ describe('Controller: MainCtrl', function () {
 	// load the controller's module
 	beforeEach(module('wdiApp'));
 
-	var MainCtrl,
+	var mainCtrl,
 		scope;
 
 	// Initialize the controller and a mock scope
 	beforeEach(inject(function ($controller, $rootScope) {
 		scope = $rootScope.$new();
-		MainCtrl = $controller('MainCtrl', {$scope: scope});
+		mainCtrl = $controller('MainCtrl', {
+			$scope: scope,
+			history: jasmine.createSpyObj('history', ['publish']),
+			SelectionStore: jasmine.createSpyObj('SelectionStore', [
+				'addListener', 'countries', 'indicators', 'getDispatcher'
+			])
+		});
 	}));
 
 	it('should just exist', function () {
-		expect(true).toBe(true);
+		expect(mainCtrl).toBeTruthy();
 	});
 });

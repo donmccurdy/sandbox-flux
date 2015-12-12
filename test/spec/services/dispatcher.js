@@ -11,8 +11,8 @@ describe('Service: dispatcher', function () {
 		dispatcher = _dispatcher_;
 	}));
 
-	it('should do something', function () {
-		expect(!!dispatcher).toBe(true);
+	it('should just exist', function () {
+		expect(dispatcher).toBeTruthy();
 	});
 
 });

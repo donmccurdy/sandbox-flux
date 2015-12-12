@@ -21,6 +21,6 @@ describe('Controller: SidebarCtrl', function () {
 	}));
 
 	it('should just exist', function () {
-		expect(!!sidebarCtrl).toBe(true);
+		expect(sidebarCtrl).toBeTruthy();
 	});
 });

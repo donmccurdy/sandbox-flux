@@ -5,16 +5,16 @@ describe('Controller: AboutCtrl', function () {
 	// load the controller's module
 	beforeEach(module('wdiApp'));
 
-	var AboutCtrl,
+	var aboutCtrl,
 		scope;
 
 	// Initialize the controller and a mock scope
 	beforeEach(inject(function ($controller, $rootScope) {
 		scope = $rootScope.$new();
-		AboutCtrl = $controller('AboutCtrl', {$scope: scope});
+		aboutCtrl = $controller('AboutCtrl', {$scope: scope});
 	}));
 
 	it('should just exist', function () {
-		expect(true).toBe(true);
+		expect(aboutCtrl).toBeTruthy();
 	});
 });

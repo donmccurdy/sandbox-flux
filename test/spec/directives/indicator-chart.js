@@ -19,6 +19,6 @@ describe('Directive: indicatorChart', function () {
 	it('should just exist', inject(function ($compile) {
 		element = angular.element('<indicator-chart></indicator-chart>');
 		element = $compile(element)(scope, function () {});
-		expect(true).toBe(true);
+		expect(element).toBeTruthy();
 	}));
 });

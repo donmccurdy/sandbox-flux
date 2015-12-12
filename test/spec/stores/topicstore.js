@@ -11,8 +11,8 @@ describe('Service: TopicStore', function () {
     TopicStore = _TopicStore_;
   }));
 
-  it('should do something', function () {
-    expect(!!TopicStore).toBe(true);
+  it('should just exist', function () {
+    expect(TopicStore).toBeTruthy();
   });
 
 });

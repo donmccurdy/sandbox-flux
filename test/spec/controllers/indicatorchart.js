@@ -5,19 +5,19 @@ describe('Controller: IndicatorChartCtrl', function () {
   // load the controller's module
   beforeEach(module('wdiApp'));
 
-  var IndicatorChartCtrl,
+  var indicatorChartCtrl,
     scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    IndicatorChartCtrl = $controller('IndicatorChartCtrl', {
+    indicatorChartCtrl = $controller('IndicatorChartCtrl', {
       $scope: scope,
       $attrs: {}
     });
   }));
 
   it('should just exist', function () {
-    expect(true).toBe(true);
+    expect(indicatorChartCtrl).toBeTruthy();
   });
 });
