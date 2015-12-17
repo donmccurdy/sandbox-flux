@@ -1,0 +1,14 @@
+<div class="md-toolbar-tools">
+  <md-button ng-if="isActive('/')" ng-click="toggleNavigation()" hide-gt-sm class="md-icon-button">
+    <md-icon aria-label="Menu" md-svg-icon="images/icons/menu.svg"></md-icon>
+  </md-button>
+  <a href="#/">
+    <h1>
+      <span hide-sm>World Development Indicators</span>
+      <span hide show-sm>WDI</span>
+    </h1>
+  </a>
+  <span flex></span>
+  <md-button ng-href="#/" ng-class="{ active: isActive('/') }">Explore</md-button>
+  <md-button ng-href="#/about" ng-class="{ active: isActive('/about') }">About</md-button>
+</div>
